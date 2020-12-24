@@ -44,9 +44,17 @@ learning rate of 0.0001. The
 loss used to train is Binary Crossentropy and the metric used is SSIM. SSIM is a method
 used to measure the similarity between two images. SSIM measures the similarity between prediction and the ground truth image.
 
+![metric](https://user-images.githubusercontent.com/63425115/103107496-286c4400-463f-11eb-9d4d-35d2431bdbe8.JPG)
 
+The observation was made for 200 epochs, it is clear that the network
+is not over-fitting as the validation loss is lesser than the training loss. One of the reasons
+for lesser validation loss is because of only 20% dataset present in the validation set. The
+training was limited to 200 epochs as the loss gradually started reducing slowly and was
+about to become steady. On the other hand, the SSIM metric as shown in figure is
+increasing as the number of epochs increases. For every epoch, the similarity between
+the prediction and the label which is the ground truth started increasing.
 
-
+**Output**
 
 
 
