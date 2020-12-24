@@ -11,6 +11,16 @@ to look irrespective of the task they are doing. Saliency Maps are usually rende
 a heatmap. The hotness in the heatmap refers to the region of interest, whereas the
 Saliency Maps refers to the probability of each pixel.
 
+
+**Arranging Dataset**
+
+Dataset plays an essential role in training a neural network, training the neural network with a sufficient dataset leads to better learning
+and better predictions. We are using the dataset available on http://saliency.mit.edu/datasets.html. The Mit Saliency Benchmark dataset used
+has scenes from 20 categories. Each category consists of 200 images. In total the dataset
+has 4000 images, 2000 training datasets, and 2000 sets of labels for the training dataset.
+The 2000 training dataset consists of the original image having a resolution of 1920x1080
+pixels. The 2000 labels are nothing but ground truth.
+
 **Proposed Implementation**
 
 ![BlockDiagram](https://user-images.githubusercontent.com/63425115/103107126-b7775d00-463b-11eb-85f0-c5936938af5e.JPG)
