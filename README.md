@@ -40,7 +40,9 @@ the encoder will have a lower resolution which will be the input for the decoder
 For the available
 dataset, the bathc size of 4 is considered. The batch size is the number of samples that
 will be propogated through the network at a time. The optimizer used is SGD with a
-learning rate of 0.0001.
+learning rate of 0.0001. The
+loss used to train is Binary Crossentropy and the metric used is SSIM. SSIM is a method
+used to measure the similarity between two images. SSIM measures the similarity between prediction and the ground truth image.
 
 
 
