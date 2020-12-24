@@ -56,6 +56,21 @@ the prediction and the label which is the ground truth started increasing.
 
 **Output**
 
+The network was trained for 50 epochs rst and then it was trained for 100 and 200. Now
+it is important to pay attention to the detailing in the obtained saliency maps and the
+graph. Firstly, the input image and the output which is the saliency map have the same
+resolution that is, 512 x 512. Secondly, as the number of epochs are more, the output is
+highlighting lesser regions more clearly. The saliency map for 50 epochs highlights salient
+regions in an inelegant manner, the highlighted regions are not clear. The saliency map
+for 100 epochs is a better version of 50 epochs highlighing salient regions in a finer manner,
+whereas the salieny map for 200 epoch highlights the salient regions efficiently with better
+borders. Now, let us analyze the loss for different number of epochs. The loss seems to
+be decreasing further as we can see the curve declining after 40 epochs. The next case
+was trained for 100 epochs and the loss curve seems to be decreasing after 80 epochs.
+Due to this, the model was trained for 200 epochs to observe the behavior of loss. For
+200 epochs the loss seems to be decreasing negligibly and is becoming stable near 200
+epochs.
+![new](https://user-images.githubusercontent.com/63425115/103107534-86992700-463f-11eb-854a-1e4722f5586f.JPG)
 
 
 
