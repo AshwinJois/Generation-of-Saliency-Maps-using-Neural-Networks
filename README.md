@@ -10,3 +10,7 @@ a unique manner that is easier to analyze and is also meaningful. It is an image
 to look irrespective of the task they are doing. Saliency Maps are usually rendered as
 a heatmap. The hotness in the heatmap refers to the region of interest, whereas the
 Saliency Maps refers to the probability of each pixel.
+
+Proposed Implementation
+
+![BlockDiagram](https://user-images.githubusercontent.com/63425115/103107126-b7775d00-463b-11eb-85f0-c5936938af5e.JPG)
