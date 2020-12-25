@@ -7,10 +7,6 @@ Created on Mon Oct 19 12:47:29 2020
 import pickle
 import tensorflow as tf
 from glob import glob
-#from tensorflow.keras.applications.resnet50 import preprocess_input
-#import matplotlib
-#matplotlib.use("agg")
-#import matplotlib.pyplot as plt
 
 
 files_rgb = sorted(glob('/home/asjo/rgb/*.jpg')) # Path to the dataset in lab system
@@ -45,28 +41,11 @@ ds = tf.data.Dataset.from_tensor_slices((files_rgb, files_gt)) # Here the object
 ds = ds.map(process_images)
 ds = ds.batch(4)
 
-
-
 ds_val = tf.data.Dataset.from_tensor_slices((files_rgb_val, files_gt_val)) # Here the object ds is iterable
 ds_val = ds_val.map(process_images)
 ds_val = ds_val.batch(4)
 
-
-"""
-for d in ds.take(1):
-    x,y = d
-    x_n = x.numpy()
-    y_n = y.numpy()
-    plt.subplot(1,2,1)
-    plt.imshow(x_n[0] * 255)
-    plt.subplot(1,2,2)
-    plt.imshow((y_n[0]*255).squeeze(axis=2))   # Use squeeze(axis=2) in order to plot images with 1 channel
-    print(x.shape, y.shape)
-    break
-"""
 # Network Design Architecture
-
-
 ResNet50_encoder = tf.keras.applications.ResNet50(include_top=False, input_shape=(512,512,3)) # This does not include the last layer
 #Layer =tf.keras.applications.resnet50.preprocess_input(include_top=False, input_shape=(512,512,3))
 # Block  1
@@ -102,9 +81,6 @@ Layer = tf.keras.layers.Conv2D(64,(3,3),activation = 'linear', padding = 'same')
 Layer = tf.keras.activations.relu(Layer)
 Layer = tf.keras.layers.Conv2D(1,(3,3), activation = 'sigmoid', padding = 'same')(Layer)  #########################################
 
-#Layer = tf.keras.layers.Conv2D(1,(3,3), activation = 'relu', padding = 'same')(Layer)
-#Layer = tf.keras.layers.Dense(1, activation='sigmoid')(Layer)
-
 encoder_decoder = tf.keras.models.Model(ResNet50_encoder.input, Layer)
 encoder_decoder.summary()
 
@@ -115,10 +91,9 @@ def SSIM(y_true, y_pred):
     return tf.reduce_mean(tf.image.ssim(y_true, y_pred, 1.0))
 
 
-encoder_decoder.compile(loss = 'binary_crossentropy',#tf.keras.losses.MeanSquaredError(),
-              optimizer =  tf.keras.optimizers.SGD(learning_rate = 0.0001),#tf.keras.optimizers.Adam(learning_rate = 0.0001),
-              metrics = [SSIM])#SSIMmetric])#[tf.keras.metrics.RootMeanSquaredError()])
-
+encoder_decoder.compile(loss = 'binary_crossentropy',
+              optimizer =  tf.keras.optimizers.SGD(learning_rate = 0.0001),
+              metrics = [SSIM])
 callbacks = [
     tf.keras.callbacks.ModelCheckpoint(
         filepath='home/asjo/saved_models',
@@ -134,7 +109,6 @@ hist.history
 f = open('home/asjo/saved_models/history.pckl', 'wb')
 pickle.dump(hist.history, f)
 f.close()
-#encoder_decoder.save('home/asjo/saved_models')
 
 
 
